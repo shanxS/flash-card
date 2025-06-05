@@ -12,6 +12,12 @@ const Flashcard: React.FC<FlashcardProps> = ({ card, onComplete, isCompleted }) 
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // Reset flip state when card changes
+  useEffect(() => {
+    setIsFlipped(false);
+    setIsAnimating(false);
+  }, [card.id]);
+
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
