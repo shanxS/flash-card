@@ -38,7 +38,7 @@ function App() {
   };
 
   const handleReset = () => {
-    selectDeck('');
+    selectDeck(null);
     setShowUpload(false);
   };
 

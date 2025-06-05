@@ -89,6 +89,14 @@ export const useFlashcards = () => {
   };
 
   const selectDeck = (deckId: string) => {
+    if (!deckId) {
+      // Reset/clear the active deck
+      setActiveDeck(null);
+      setCurrentThemeIndex(0);  
+      setCurrentCardIndex(0);
+      return;
+    }
+
     const deck = decks.find(d => d.id === deckId);
     if (deck) {
       setActiveDeck(deck);
