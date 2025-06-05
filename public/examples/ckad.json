@@ -1,0 +1,39 @@
+{
+  "themes": [
+    {
+      "themeName": "Kubernetes Core Concepts",
+      "flashcards": [
+        {
+          "id": "card-1",
+          "front": "What is a Pod in Kubernetes?",
+          "back": "Smallest deployable unit, encapsulates one or more containers, shares network/storage namespaces."
+        },
+        {
+          "id": "card-2",
+          "front": "Name three components of the Kubernetes control plane.",
+          "back": "API Server, etcd, Scheduler."
+        },
+        {
+          "id": "card-3",
+          "front": "How do you list all pods in a cluster?",
+          "back": "`kubectl get pods`"
+        }
+      ]
+    },
+    {
+      "themeName": "Configuration",
+      "flashcards": [
+        {
+          "id": "card-6",
+          "front": "What is a ConfigMap used for?",
+          "back": "Stores non-sensitive configuration data for pods."
+        },
+        {
+          "id": "card-7",
+          "front": "How do you create a ConfigMap with key 'color' and value 'blue'?",
+          "back": "`kubectl create configmap my-config --from-literal=color=blue`"
+        }
+      ]
+    }
+  ]
+}

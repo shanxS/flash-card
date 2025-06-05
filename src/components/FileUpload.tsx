@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Upload } from 'lucide-react';
+import { Upload, FileText } from 'lucide-react';
+
+import exampleData from '../../public/examples/ckad.json';
 
 interface FileUploadProps {
   onFileUpload: (file: File) => void;
@@ -41,6 +43,20 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload, isLoading, error 
     fileInputRef.current?.click();
   };
 
+  const handleLoadExample = async () => {
+    try {
+      const jsonString = JSON.stringify(exampleData, null, 2);
+      
+      // Create a File object from the example data
+      const blob = new Blob([jsonString], { type: 'application/json' });
+      const file = new File([blob], 'sample-flashcards.json', { type: 'application/json' });
+      
+      onFileUpload(file);
+    } catch (err) {
+      console.error('Failed to load example file:', err);
+    }
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto my-8">
       <div
@@ -80,6 +96,20 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload, isLoading, error 
           <p>{error}</p>
         </div>
       )}
+
+      <div className="mt-6 text-center">
+        <button
+          onClick={handleLoadExample}
+          disabled={isLoading}
+          className="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+        <FileText className="w-4 h-4 mr-2" />
+          Load Example File
+        </button>
+        <p className="text-xs text-gray-500 mt-1">
+          Try with our sample flashcards
+        </p>
+      </div>
 
       <div className="mt-8">
         <h4 className="text-lg font-medium mb-3">Sample JSON Format</h4>
